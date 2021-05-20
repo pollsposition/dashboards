@@ -1,0 +1,387 @@
+,field_date,sondage,method,samplesize,p_approve
+697,2017-05-17,Elabe,internet,999,0.45
+698,2017-05-20,Ifop,phone,973,0.62
+699,2017-05-20,Ipsos,internet,1015,0.46
+700,2017-05-21,Viavoice,internet,1006,0.49
+701,2017-05-23,BVA,internet,1011,0.62
+702,2017-05-23,Odoxa,internet,1014,0.58
+703,2017-05-24,Elabe,internet,1051,0.67
+704,2017-05-25,YouGov,internet,1008,0.39
+705,2017-05-27,Ipsos,internet,2138,0.58
+706,2017-05-27,Kantar,face to face,1008,0.57
+707,2017-06-04,BVA,internet,4772,0.68
+708,2017-06-06,Elabe,internet,1001,0.45
+709,2017-06-07,Elabe,internet,1000,0.66
+710,2017-06-09,Ipsos,internet,4003,0.58
+711,2017-06-19,Ifop,phone&internet,1883,0.64
+712,2017-06-20,BVA,internet,1187,0.59
+713,2017-06-22,Odoxa,internet,1008,0.58
+714,2017-06-24,Ipsos,internet,1058,0.45
+715,2017-06-24,Kantar,face to face,1000,0.54
+716,2017-06-25,Viavoice,internet,1011,0.53
+717,2017-06-29,YouGov,internet,1016,0.43
+718,2017-07-05,Elabe,internet,999,0.45
+719,2017-07-18,BVA,internet,1007,0.54
+720,2017-07-20,Ifop,phone&internet,1947,0.54
+721,2017-07-22,Ipsos,internet,1022,0.42
+722,2017-07-27,YouGov,internet,1003,0.36
+723,2017-08-02,Elabe,internet,1000,0.4
+724,2017-08-08,Ifop,internet,1001,0.36
+725,2017-08-26,Ifop,phone&internet,1023,0.4
+726,2017-08-26,Kantar,face to face,983,0.41
+727,2017-08-29,BVA,internet,1162,0.43
+728,2017-08-29,YouGov,internet,1003,0.3
+729,2017-09-06,Elabe,internet,1002,0.37
+730,2017-09-09,Ipsos,internet,988,0.32
+731,2017-09-13,Viavoice,internet,1007,0.38
+732,2017-09-14,Odoxa,internet,992,0.44
+733,2017-09-19,Ifop,phone&internet,1989,0.45
+734,2017-09-26,BVA,internet,1092,0.45
+735,2017-09-28,YouGov,internet,1002,0.32
+736,2017-09-30,Kantar,face to face,1000,0.39
+737,2017-10-04,Elabe,internet,1001,0.4
+738,2017-10-14,Ipsos,internet,957,0.34
+739,2017-10-17,Ifop,phone&internet,1938,0.42
+740,2017-10-19,Odoxa,internet,995,0.44
+741,2017-10-25,BVA,internet,1193,0.42
+742,2017-10-26,YouGov,internet,1034,0.32
+743,2017-10-27,Kantar,face to face,983,0.38
+744,2017-10-31,Elabe,internet,1152,0.38
+745,2017-11-01,Viavoice,internet,1002,0.4
+746,2017-11-11,Ipsos,internet,1043,0.37
+747,2017-11-14,Ifop,phone&internet,1964,0.46
+748,2017-11-23,Odoxa,internet,1009,0.45
+749,2017-11-25,Kantar,face to face,1000,0.42
+750,2017-11-28,BVA,internet,972,0.46
+751,2017-11-29,Elabe,internet,1001,0.4
+752,2017-11-30,YouGov,internet,1006,0.35
+753,2017-12-09,Ipsos,internet,1016,0.39
+754,2017-12-12,Ifop,phone&internet,1942,0.52
+755,2017-12-14,Odoxa,internet,1028,0.54
+756,2017-12-19,BVA,internet,1199,0.52
+757,2018-01-03,Elabe,internet,1001,0.42
+758,2018-01-06,Kantar,face to face,1000,0.44
+759,2018-01-13,Ipsos,internet,1050,0.4
+760,2018-01-16,Ifop,phone&internet,1947,0.5
+761,2018-01-18,Odoxa,internet,1006,0.49
+762,2018-01-25,YouGov,internet,1008,0.41
+763,2018-01-27,Kantar,face to face,1000,0.44
+764,2018-01-30,BVA,internet,1101,0.47
+765,2018-01-31,Elabe,internet,1000,0.38
+766,2018-02-10,Ipsos,internet,1001,0.35
+767,2018-02-13,Ifop,phone&internet,1953,0.44
+768,2018-02-22,Odoxa,internet,973,0.43
+769,2018-02-22,YouGov,internet,1026,0.3
+770,2018-02-23,Viavoice,internet,1010,0.41
+771,2018-02-24,Kantar,face to face,1000,0.43
+772,2018-02-27,BVA,internet,1019,0.43
+773,2018-02-28,Elabe,internet,999,0.41
+774,2018-03-13,Ifop,phone&internet,1946,0.42
+775,2018-03-17,Ipsos,internet,1011,0.37
+776,2018-03-22,BVA,internet,1053,0.4
+777,2018-03-23,Odoxa,internet,1018,0.45
+778,2018-03-28,YouGov,internet,1004,0.32
+779,2018-03-30,Kantar,face to face,1000,0.4
+780,2018-04-04,Elabe,internet,1008,0.39
+781,2018-04-13,Elabe,internet,1004,0.2
+782,2018-04-14,Ifop,internet,1201,0.42
+783,2018-04-17,Ifop,phone&internet,1949,0.44
+784,2018-04-17,Viavoice,internet,1000,0.41
+785,2018-04-18,Elabe,internet,1002,0.2
+786,2018-04-19,BVA,internet,1011,0.43
+787,2018-04-19,Odoxa,internet,1017,0.47
+788,2018-04-21,Ipsos,internet,1013,0.4
+789,2018-04-25,Kantar,face to face,1000,0.41
+790,2018-04-26,YouGov,internet,1013,0.33
+791,2018-05-01,Elabe,internet,1008,0.41
+792,2018-05-16,Odoxa,internet,1015,0.46
+793,2018-05-19,Ipsos,internet,1025,0.37
+794,2018-05-24,BVA,internet,1000,0.4
+795,2018-05-26,Kantar,face to face,1000,0.38
+796,2018-06-06,Elabe,internet,1002,0.4
+797,2018-06-19,Ifop,phone&internet,1963,0.4
+798,2018-06-21,BVA,internet,1000,0.41
+799,2018-06-22,Odoxa,internet,1007,0.41
+800,2018-06-23,Ipsos,internet,996,0.36
+801,2018-06-28,Ifop,internet,1008,0.41
+802,2018-06-28,YouGov,internet,1028,0.32
+803,2018-06-30,Kantar,face to face,923,0.32
+804,2018-07-04,Elabe,internet,1001,0.34
+805,2018-07-16,Odoxa,internet,1005,0.39
+806,2018-07-19,BVA,internet,1003,0.39
+807,2018-07-21,Ipsos,internet,999,0.32
+808,2018-07-23,Ifop,internet,1981,0.39
+809,2018-07-25,Harris,internet,966,0.42
+810,2018-07-26,YouGov,internet,1017,0.27
+811,2018-08-01,Elabe,internet,1007,0.36
+812,2018-08-21,Viavoice,internet,1008,0.36
+813,2018-08-24,Ifop,internet,995,0.34
+814,2018-08-25,Kantar,face to face,1000,0.33
+815,2018-08-29,Harris,internet,977,0.36
+816,2018-08-30,BVA,internet,1040,0.34
+817,2018-08-30,YouGov,internet,1099,0.23
+818,2018-08-31,Ifop,internet,1015,0.31
+819,2018-09-05,Elabe,internet,1000,0.31
+820,2018-09-06,Odoxa,internet,1004,0.29
+821,2018-09-08,Ipsos,internet,998,0.25
+822,2018-09-18,Ifop,phone&internet,1964,0.29
+823,2018-09-20,OpinionWay,internet,1061,0.28
+824,2018-09-26,Harris,internet,1022,0.34
+825,2018-09-27,BVA,internet,1011,0.32
+826,2018-09-27,YouGov,internet,1006,0.25
+827,2018-09-28,Ifop,internet,1008,0.33
+828,2018-09-29,Kantar,face to face,1000,0.3
+829,2018-10-03,Elabe,internet,1001,0.3
+830,2018-10-05,Odoxa,internet,1014,0.33
+831,2018-10-17,Ifop,phone&internet,1968,0.29
+832,2018-10-18,OpinionWay,internet,1063,0.29
+833,2018-10-20,Ipsos,internet,1003,0.26
+834,2018-10-21,Viavoice,internet,1007,0.26
+835,2018-10-24,Harris,internet,989,0.33
+836,2018-10-25,BVA,internet,1090,0.29
+837,2018-10-25,YouGov,internet,1010,0.21
+838,2018-10-26,Ifop,internet,1024,0.29
+839,2018-10-26,Kantar,face to face,1000,0.26
+840,2018-11-07,Elabe,internet,1002,0.27
+841,2018-11-13,Ifop,phone&internet,1957,0.25
+842,2018-11-15,OpinionWay,internet,1064,0.29
+843,2018-11-16,Odoxa,internet,1005,0.32
+844,2018-11-17,Ipsos,internet,1000,0.26
+845,2018-11-22,BVA,internet,1258,0.26
+846,2018-11-28,Harris,internet,908,0.32
+847,2018-11-29,Viavoice,internet,1021,0.23
+848,2018-11-29,YouGov,internet,1006,0.18
+849,2018-11-30,Ifop,internet,1004,0.23
+850,2018-12-01,Kantar,face to face,1000,0.21
+851,2018-12-05,Elabe,internet,1002,0.23
+852,2018-12-08,Ipsos,internet,971,0.2
+853,2018-12-11,Ifop,phone&internet,1943,0.23
+854,2018-12-13,OpinionWay,internet,1029,0.31
+855,2018-12-14,Odoxa,internet,990,0.27
+856,2018-12-19,BVA,internet,1105,0.27
+857,2018-12-24,Harris,internet,1028,0.31
+858,2019-01-04,Ifop,internet,1004,0.28
+859,2019-01-05,Kantar,face to face,1000,0.22
+860,2019-01-09,Elabe,internet,1003,0.25
+861,2019-01-12,Ipsos,internet,1005,0.23
+862,2019-01-15,Ifop,phone&internet,1928,0.27
+863,2019-01-18,OpinionWay,internet,1042,0.3
+864,2019-01-23,Harris,internet,1039,0.35
+865,2019-01-23,Odoxa,internet,1003,0.3
+866,2019-01-24,BVA,internet,1023,0.31
+867,2019-01-26,Kantar,face to face,1000,0.24
+868,2019-01-31,YouGov,internet,1037,0.21
+869,2019-02-01,Ifop,internet,1004,0.34
+870,2019-02-06,Elabe,internet,1000,0.27
+871,2019-02-12,Ifop,phone&internet,1891,0.28
+872,2019-02-14,OpinionWay,internet,1027,0.29
+873,2019-02-20,Viavoice,internet,1004,0.28
+874,2019-02-21,BVA,internet,1012,0.3
+875,2019-02-21,Harris,internet,897,0.39
+876,2019-02-21,Odoxa,internet,1004,0.32
+877,2019-02-23,Kantar,face to face,1000,0.26
+878,2019-02-28,YouGov,internet,1004,0.24
+879,2019-03-01,Ifop,internet,1009,0.31
+880,2019-03-02,Ipsos,internet,1035,0.28
+881,2019-03-06,Elabe,internet,1003,0.31
+882,2019-03-14,OpinionWay,internet,1070,0.32
+883,2019-03-19,Ifop,phone&internet,1929,0.29
+884,2019-03-21,BVA,internet,1001,0.29
+885,2019-03-21,Odoxa,internet,1001,0.3
+886,2019-03-21,OpinionWay,internet,1009,0.29
+887,2019-03-27,Harris,internet,933,0.38
+888,2019-03-28,OpinionWay,internet,1051,0.29
+889,2019-03-28,YouGov,internet,1001,0.25
+890,2019-03-29,Ifop,internet,1001,0.29
+891,2019-03-30,Kantar,face to face,1000,0.26
+892,2019-04-03,Elabe,internet,1004,0.28
+893,2019-04-06,Ipsos,internet,1001,0.27
+894,2019-04-16,Ifop,phone&internet,1921,0.29
+895,2019-04-18,BVA,internet,1002,0.32
+896,2019-04-18,Odoxa,internet,1003,0.32
+897,2019-04-18,OpinionWay,internet,1057,0.27
+898,2019-04-24,Harris,internet,934,0.38
+899,2019-04-26,Kantar,face to face,1000,0.25
+900,2019-04-28,Viavoice,internet,1002,0.26
+901,2019-05-03,Ifop,internet,1008,0.3
+902,2019-05-07,Elabe,internet,1583,0.27
+903,2019-05-11,Ipsos,internet,1001,0.27
+904,2019-05-14,Ifop,phone&internet,1946,0.3
+905,2019-05-16,BVA,internet,1000,0.32
+906,2019-05-27,Odoxa,internet,980,0.3
+907,2019-05-29,Harris,internet,922,0.4
+908,2019-05-29,Ifop,internet,1005,0.32
+909,2019-05-30,Kantar,face to face,1000,0.29
+910,2019-06-05,Elabe,internet,1007,0.32
+911,2019-06-06,OpinionWay,internet,1014,0.33
+912,2019-06-15,Ipsos,internet,1002,0.32
+913,2019-06-18,Ifop,phone&internet,1910,0.3
+914,2019-06-20,BVA,internet,1003,0.35
+915,2019-06-20,Odoxa,internet,1002,0.36
+916,2019-06-26,Harris,internet,894,0.4
+917,2019-06-27,Ifop,internet,1002,0.38
+918,2019-06-29,Kantar,face to face,1000,0.27
+919,2019-07-02,Viavoice,internet,1002,0.32
+920,2019-07-02,YouGov,internet,1045,0.26
+921,2019-07-03,Elabe,internet,1009,0.31
+922,2019-07-04,OpinionWay,internet,1002,0.33
+923,2019-07-18,BVA,internet,1000,0.34
+924,2019-07-18,Ifop,internet,996,0.32
+925,2019-07-20,Ipsos,internet,1002,0.31
+926,2019-07-24,Harris,internet,930,0.41
+927,2019-07-31,Elabe,internet,1002,0.28
+928,2019-08-22,BVA,internet,966,0.34
+929,2019-08-22,Ifop,internet,988,0.34
+930,2019-08-28,Harris,internet,910,0.43
+931,2019-08-30,Ifop,internet,1010,0.38
+932,2019-08-31,Kantar,face to face,1000,0.32
+933,2019-09-04,Elabe,internet,1002,0.33
+934,2019-09-11,Viavoice,internet,1008,0.32
+935,2019-09-14,Ipsos,internet,1009,0.36
+936,2019-09-17,Ifop,phone&internet,1960,0.33
+937,2019-09-19,BVA,internet,1004,0.37
+938,2019-09-19,Odoxa,internet,1005,0.36
+939,2019-09-25,Harris,internet,905,0.42
+940,2019-09-28,Kantar,face to face,1000,0.29
+941,2019-10-02,Elabe,internet,1000,0.33
+942,2019-10-12,Ipsos,internet,1008,0.33
+943,2019-10-15,Ifop,phone&internet,1953,0.34
+944,2019-10-17,BVA,internet,1000,0.37
+945,2019-10-23,Harris,internet,905,0.4
+946,2019-10-24,Odoxa,internet,1005,0.35
+947,2019-10-25,Kantar,face to face,1000,0.3
+948,2019-10-29,YouGov,internet,1031,0.27
+949,2019-11-06,Elabe,internet,1002,0.28
+950,2019-11-12,Ifop,phone&internet,1911,0.33
+951,2019-11-14,BVA,internet,968,0.36
+952,2019-11-16,Ipsos,internet,1053,0.33
+953,2019-11-17,Viavoice,internet,1003,0.31
+954,2019-11-21,Odoxa,internet,1002,0.34
+955,2019-11-27,Harris,internet,900,0.39
+956,2019-11-28,Kantar,face to face,1000,0.27
+957,2019-12-10,Ifop,phone&internet,1899,0.34
+958,2019-12-12,BVA,internet,968,0.34
+959,2019-12-13,Elabe,internet,1003,0.3
+960,2019-12-14,Ipsos,internet,1001,0.29
+961,2019-12-19,Odoxa,internet,1002,0.33
+962,2019-12-26,Harris,internet,915,0.4
+963,2020-01-15,Elabe,internet,1006,0.32
+964,2020-01-18,Ipsos,internet,1004,0.3
+965,2020-01-21,Ifop,phone&internet,1952,0.3
+966,2020-01-22,Harris,internet,934,0.4
+967,2020-01-23,BVA,internet,1005,0.33
+968,2020-01-23,Odoxa,internet,1002,0.36
+969,2020-01-30,Ifop,internet,1000,0.34
+970,2020-02-01,Kantar,face to face,1000,0.24
+971,2020-02-05,Elabe,internet,1005,0.31
+972,2020-02-18,Ifop,phone&internet,1947,0.32
+973,2020-02-19,Harris,internet,909,0.38
+974,2020-02-20,BVA,internet,1000,0.33
+975,2020-02-20,Odoxa,internet,1005,0.33
+976,2020-02-22,Ipsos,internet,1005,0.3
+977,2020-02-23,Viavoice,internet,1000,0.28
+978,2020-02-29,Kantar,face to face,1000,0.28
+979,2020-03-04,Elabe,internet,1007,0.29
+980,2020-03-18,Harris,internet,917,0.51
+981,2020-03-21,Ipsos,internet,1000,0.44
+982,2020-03-21,Viavoice,internet,1000,0.34
+983,2020-03-23,Ifop,phone&internet,1930,0.43
+984,2020-03-25,Odoxa,internet,1005,0.38
+985,2020-03-26,BVA,internet,1010,0.4
+986,2020-03-28,Kantar,internet,1000,0.47
+987,2020-03-31,Elabe,internet,1003,0.39
+988,2020-04-13,Ifop,phone&internet,1942,0.42
+989,2020-04-23,BVA,internet,976,0.38
+990,2020-04-23,Odoxa,internet,1005,0.42
+991,2020-04-24,Ipsos,internet,1002,0.38
+992,2020-04-29,Harris,internet,947,0.43
+993,2020-05-05,Elabe,internet,1009,0.34
+994,2020-05-19,BVA,internet,980,0.37
+995,2020-05-19,Ifop,phone&internet,1918,0.39
+996,2020-05-20,Odoxa,internet,1004,0.35
+997,2020-05-27,Harris,internet,961,0.44
+998,2020-05-30,Ipsos,internet,1013,0.38
+999,2020-05-31,Viavoice,internet,1000,0.33
+1000,2020-06-02,Elabe,internet,1002,0.33
+1001,2020-06-16,Ifop,phone&internet,1865,0.38
+1002,2020-06-18,BVA,internet,1003,0.38
+1003,2020-06-18,Odoxa,internet,1004,0.39
+1004,2020-06-24,Harris,internet,975,0.44
+1005,2020-06-27,Kantar,face to face,1000,0.33
+1006,2020-06-30,YouGov,internet,1024,0.29
+1007,2020-07-01,Elabe,internet,1004,0.35
+1008,2020-07-10,Ifop,internet,1018,0.38
+1009,2020-07-16,BVA,internet,1000,0.39
+1010,2020-07-16,Ifop,internet,974,0.37
+1011,2020-07-22,Harris,internet,960,0.5
+1012,2020-08-04,YouGov,internet,1041,0.3
+1013,2020-08-05,Elabe,internet,1002,0.39
+1014,2020-08-13,Viavoice,internet,1001,0.32
+1015,2020-08-26,Harris,internet,994,0.45
+1016,2020-08-27,BVA,internet,1002,0.44
+1017,2020-08-28,Ifop,internet,1016,0.39
+1018,2020-08-29,Kantar,face to face,1000,0.35
+1019,2020-09-01,YouGov,internet,1024,0.31
+1020,2020-09-09,Elabe,internet,1001,0.35
+1021,2020-09-23,Harris,internet,994,0.45
+1022,2020-09-23,Odoxa,internet,1005,0.38
+1023,2020-09-24,BVA,internet,1001,0.38
+1024,2020-09-26,Kantar,face to face,1000,0.29
+1025,2020-09-29,YouGov,internet,1034,0.29
+1026,2020-10-07,Elabe,internet,1000,0.32
+1027,2020-10-10,Ipsos,internet,1000,0.4
+1028,2020-10-11,Ifop,phone&internet,1937,0.38
+1029,2020-10-22,BVA,internet,1002,0.42
+1030,2020-10-22,Odoxa,internet,1001,0.41
+1031,2020-10-25,Viavoice,internet,1001,0.34
+1032,2020-10-28,Harris,internet,961,0.46
+1033,2020-10-30,Ifop,internet,1028,0.46
+1034,2020-10-30,Kantar,face to face,1000,0.4
+1035,2020-11-03,YouGov,internet,1004,0.34
+1036,2020-11-04,Elabe,internet,1003,0.35
+1037,2020-11-11,Odoxa,internet,1005,0.43
+1038,2020-11-14,Ipsos,internet,1000,0.37
+1039,2020-11-16,Ifop,phone&internet,1924,0.41
+1040,2020-11-19,BVA,internet,921,0.42
+1041,2020-11-25,Harris,internet,970,0.49
+1042,2020-11-27,Ifop,internet,1013,0.41
+1043,2020-11-28,Kantar,face to face,1000,0.38
+1044,2020-12-01,YouGov,internet,1008,0.32
+1045,2020-12-02,Elabe,internet,1000,0.32
+1046,2020-12-11,Odoxa,internet,990,0.42
+1047,2020-12-13,Ifop,phone&internet,1936,0.38
+1048,2020-12-17,BVA,internet,1005,0.4
+1049,2020-12-23,Harris,internet,1000,0.49
+1050,2021-01-06,Elabe,internet,1001,0.35
+1051,2021-01-06,YouGov,internet,1061,0.32
+1052,2021-01-08,Ifop,internet,1028,0.45
+1053,2021-01-09,Kantar,face to face,1000,0.36
+1054,2021-01-14,Odoxa,internet,1003,0.4
+1055,2021-01-15,Ifop,phone&internet,1913,0.4
+1056,2021-01-21,BVA,internet,1002,0.37
+1057,2021-01-21,Viavoice,internet,1001,0.34
+1058,2021-01-23,Ipsos,internet,1000,0.35
+1059,2021-01-27,Harris,internet,1017,0.45
+1060,2021-01-31,Kantar,face to face,2000,0.39
+1061,2021-02-02,YouGov,internet,1013,0.34
+1062,2021-02-03,Elabe,internet,1001,0.36
+1063,2021-02-05,Ifop,internet,1004,0.41
+1064,2021-02-15,Ifop,phone&internet,1954,0.41
+1065,2021-02-18,BVA,internet,1003,0.42
+1066,2021-02-18,Odoxa,internet,1005,0.41
+1067,2021-02-24,Harris,internet,1037,0.48
+1068,2021-02-26,Ifop,internet,1012,0.41
+1069,2021-03-02,Kantar,internet,1000,0.39
+1070,2021-03-02,YouGov,internet,1084,0.33
+1071,2021-03-03,Elabe,internet,1003,0.34
+1072,2021-03-06,Ipsos,internet,1000,0.41
+1073,2021-03-15,Ifop,phone&internet,1911,0.37
+1074,2021-03-18,BVA,internet,1001,0.39
+1075,2021-03-24,Harris,internet,1023,0.46
+1076,2021-03-25,Odoxa,internet,1005,0.39
+1077,2021-03-26,Ifop,internet,1011,0.39
+1078,2021-03-29,Kantar,internet,1000,0.36
+1079,2021-03-30,YouGov,internet,1068,0.3
+1080,2021-04-07,Elabe,internet,1003,0.33
+1081,2021-04-10,Ipsos,internet,1002,0.37
+1082,2021-04-26,Kantar,internet,1000,0.35
