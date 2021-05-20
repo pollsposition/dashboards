@@ -3,10 +3,14 @@
 
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+
 <script>
   // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 60},
-    width = 460 - margin.left - margin.right,
+    width = 960 - margin.left - margin.right,
     height = 450 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
@@ -21,20 +25,36 @@ var svg = d3.select("#my_dataviz")
 // -------------------------------------------------------------------
 //                        == POLL DATA ==
 // -------------------------------------------------------------------
-d3.csv("https://raw.githubusercontent.com/alexandorra/dashboard/master/data/export/polls.csv", function(data) {
+d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/main/exports/polls_popularity.csv", 
+  function(d){ // Let us format the data variable
+    return { 
+			field_date : d3.timeParse("%Y-%m-%d")(d.field_date),
+			sondage : d.sondage,
+		  method: d.method,
+		  p_approve: d.p_approve,
+		  samplesize: d.samplesize
+		}
+  },
+	function(data) {
 
   // Add X axis
-  var x = d3.scaleLinear()
-    .domain([0, 3000])
+  var x = d3.scaleTime()
+		.domain([new Date("2017-05-01"), new Date("2022-05-01")]) //d3.extent(data, function(d) { return d.field_date; }))
     .range([ 0, width ]);
+
+	var xAxis = d3.axisBottom(x)
+		.tickFormat(d3.timeFormat("%b"));
+
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(x));
+    //.call(xAxis);
 
   // Add Y axis
   var y = d3.scaleLinear()
     .domain([0, 1])
     .range([ height, 0]);
+
   svg.append("g")
     .call(d3.axisLeft(y));
 
@@ -50,89 +70,121 @@ d3.csv("https://raw.githubusercontent.com/alexandorra/dashboard/master/data/expo
     .style("border-radius", "5px")
     .style("padding", "10px")
 
+
+	var highlight = function(d) {
+    selected_pollster = d.sondage
+
+    d3.selectAll(".dot")
+      .transition()
+      .duration(200)
+      .style("fill", "white")
+      .attr("r", 0)
+
+    d3.selectAll("." + selected_pollster)
+      .transition()
+      .duration(200)
+      .style("fill", "red")
+      .attr("r", 4)
+      .style("opacity", 1)
+      .style("stroke", "white")
+	}
+
+	var remove_highlight = function(){
+    d3.selectAll(".dot")
+      .transition()
+      .duration(200)
+      .attr("r", 4)
+      .style("fill", "#d8dee9")
+      .style("opacity", 1)
+      .style("stroke", "white")
+  }
+
   // A function that change this tooltip when the user hover a point.
   // Its opacity is set to 1: we can now see it. Plus it set the text and position of tooltip depending on the datapoint (d)
   var mouseover = function(d) {
     tooltip
       .style("opacity", 1)
+		highlight(d);
   }
 
   var mousemove = function(d) {
     tooltip
-      .html("Institut: " + d.pollster + "<br>Méthode: " + d.method + "<br>Approuvent: " + d.approval)
+			.html("Institut: " + d.sondage + "<br>Méthode: " + d.method + "<br>Approuvent: " + d.p_approve + "<br>Échantillon: " + d.samplesize)
       .style("left", (d3.mouse(this)[0]+90) + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
       .style("top", (d3.mouse(this)[1]) + "px")
   }
-
+	
   // A function that change this tooltip when the leaves a point: just need to set opacity to 0 again
   var mouseleave = function(d) {
     tooltip
       .transition()
       .duration(200)
       .style("opacity", 0)
+		remove_highlight(d);
   }
 
   // Add dots
   svg.append('g')
     .selectAll("dot")
+		.data(data)
     .enter()
     .append("circle")
-      .attr("cx", function (d) { return x(d.date); } )
-      .attr("cy", function (d) { return y(d.approval); } )
-      .attr("r", 7)
-      .style("fill", "#ECEFF4")
-      .style("opacity", 1.)
+		  .attr("class", function (d) { return "dot " + d.sondage } )
+      .attr("cx", function (d) { return x(d.field_date); } )
+      .attr("cy", function (d) { return y(d.p_approve); } )
+      .attr("r", 4)
+      .style("fill", "#d8dee9")
+      .style("opacity", 1)
       .style("stroke", "white")
     .on("mouseover", mouseover )
     .on("mousemove", mousemove )
     .on("mouseleave", mouseleave )
-
 })
 
 // -------------------------------------------------------------------
 //                    == MODEL + UNCERTAINTY ==
 // -------------------------------------------------------------------
-d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_IC.csv",function(data) {
+<!--d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_IC.csv",function(data) {-->
 
-    // Add X axis --> it is a date format
-    var x = d3.scaleLinear()
-      .domain([1,100])
-      .range([ 0, width ]);
-    svg.append("g")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x));
+    <!--// Add X axis --> it is a date format-->
+    <!--var x = d3.scaleLinear()-->
+      <!--.domain([1,100])-->
+      <!--.range([ 0, width ]);-->
+    <!--svg.append("g")-->
+      <!--.attr("transform", "translate(0," + height + ")")-->
+      <!--.call(d3.axisBottom(x));-->
 
-    // Add Y axis
-    var y = d3.scaleLinear()
-      .domain([0, 13])
-      .range([ height, 0 ]);
-    svg.append("g")
-      .call(d3.axisLeft(y));
+    <!--// Add Y axis-->
+    <!--var y = d3.scaleLinear()-->
+      <!--.domain([0, 13])-->
+      <!--.range([ height, 0 ]);-->
+    <!--svg.append("g")-->
+      <!--.call(d3.axisLeft(y));-->
 
-    // Show confidence interval
-    svg.append("path")
-      .datum(data)
-      .attr("fill", "#cce5df")
-      .attr("stroke", "none")
-      .attr("d", d3.area()
-        .x(function(d) { return x(d.date) })
-        .y0(function(d) { return y(d.50_right) })
-        .y1(function(d) { return y(d.50_left) })
-        )
+    <!--// Show confidence interval-->
+    <!--svg.append("path")-->
+      <!--.datum(data)-->
+      <!--.attr("fill", "#cce5df")-->
+      <!--.attr("stroke", "none")-->
+      <!--.attr("d", d3.area()-->
+        <!--.x(function(d) { return x(d.date) })-->
+        <!--.y0(function(d) { return y(d.50_right) })-->
+        <!--.y1(function(d) { return y(d.50_left) })-->
+        <!--)-->
 
-    // Add the line
-    svg
-      .append("path")
-      .datum(data)
-      .attr("fill", "none")
-      .attr("stroke", "steelblue")
-      .attr("stroke-width", 1.5)
-      .attr("d", d3.line()
-        .x(function(d) { return x(d.date) })
-        .y(function(d) { return y(d.median_approval) })
-        )
+    <!--// Add the line-->
+    <!--svg-->
+      <!--.append("path")-->
+      <!--.datum(data)-->
+      <!--.attr("fill", "none")-->
+      <!--.attr("stroke", "steelblue")-->
+      <!--.attr("stroke-width", 1.5)-->
+      <!--.attr("d", d3.line()-->
+        <!--.x(function(d) { return x(d.date) })-->
+        <!--.y(function(d) { return y(d.median_approval) })-->
+        <!--)-->
 
-})
+<!--})-->
 
 
 </script>
