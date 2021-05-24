@@ -1,7 +1,7 @@
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 60},
     //width = d3.select("#my_dataviz").parent().width(),
-    width = 800 - margin.left - margin.right,
+    width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
 //var width = d3.select("#my_dataviz").style('width');
@@ -58,7 +58,7 @@ svg.append("g")
     .style("padding", "10px")
 
 
-	var highlight = function(d) {
+  var highlight = function(d) {
     selected_pollster = d.sondage
 
     d3.selectAll(".dot")
@@ -74,9 +74,9 @@ svg.append("g")
       .attr("r", 4)
       .style("opacity", 1)
       .style("stroke", "white")
-	}
+  }
 
-	var remove_highlight = function(){
+  var remove_highlight = function(){
     d3.selectAll(".dot")
       .transition()
       .duration(200)
@@ -137,133 +137,156 @@ svg.append("g")
 //                    == MODEL + UNCERTAINTY ==
 // -------------------------------------------------------------------
 d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/main/exports/predictions_popularity.csv", 
-	function(d){ // Let us format the data variable
-		return { 
-			date : d3.timeParse("%Y-%m-%d")(d.date),
-			mean : Number.parseFloat(100 * d.mean).toFixed(1),
-			hdi_50_right : 100 * d.hdi_50_right,
-			hdi_50_left : 100 * d.hdi_50_left,
-			hdi_95_right : 100 * d.hdi_95_right,
-			hdi_95_left : 100 * d.hdi_95_left,
+  function(d){ // Let us format the data variable
+    return { 
+	date : d3.timeParse("%Y-%m-%d")(d.date),
+	mean : Number.parseFloat(100 * d.mean).toFixed(1),
+	hdi_50_right : Number.parseFloat(100 * d.hdi_50_right).toFixed(1),
+	hdi_50_left : Number.parseFloat(100 * d.hdi_50_left).toFixed(1),
+	hdi_95_right : Number.parseFloat(100 * d.hdi_95_right).toFixed(1),
+	hdi_95_left : Number.parseFloat(100 * d.hdi_95_left).toFixed(1),
+    }
+  },
+  function(data){
+
+	var x = d3.scaleTime()
+		.domain([new Date("2017-05-01"), new Date("2022-05-01")])
+		.range([ 0, width ]);
+	svg.append("g")
+		.attr("transform", "translate(0," + height + ")")
+		.call(d3.axisBottom(x));
+
+	var y = d3.scaleLinear()
+		.domain([0, 100])
+		.range([ height, 0]);
+	svg.append("g")
+		.call(d3.axisLeft(y));
+
+	// This allows to find the closest X index of the mouse:
+	var bisect = d3.bisector(function(d) { return d.date; }).left;
+
+	// Create the text that travels along the curve of chart
+	var focusText = svg
+		.append('g')
+		.append('text')
+			.attr("class", "popularity-text")
+			.style("opacity", 0)
+			.attr("text-anchor", "left")
+			.attr("alignment-baseline", "middle")
+	    .style("font-size", "34px")
+	    .style("color", "white")
+            .attr("stroke", "white")
+	    .attr("fill", "black")
+            .attr("stroke-width", "3px");
+
+	var focusText2 = svg
+		.append('g')
+		.append('text')
+			.attr("class", "popularity-text")
+			.style("opacity", 0)
+			.attr("text-anchor", "left")
+			.attr("alignment-baseline", "middle")
+	    .style("font-size", "34px")
+	    .style("color", "black")
+            .attr("stroke", "black")
+	    .attr("fill", "black")
+            .attr("stroke-width", "2px");
+
+	var focusDate = svg
+		.append('g')
+		.append('text')
+			.attr("class", "popularity-date")
+			.style("opacity", 0)
+			.attr("text-anchor", "left")
+			.attr("alignment-baseline", "middle")
+	    .style("font-size", "20px")
+	    .style("color", "black")
+
+	// Create the vertical line that follows the popularity
+	//arrow
+	var verticalLine = svg
+	  .append("g")
+		.append("line")
+			.style("stroke", "black")
+			.style('stroke-width', 1)
+			.style('stroke-dasharray', ('5,1'))
+			.attr("y2", 7 * margin.top)
+	    .attr("y1", height)
+
+	// Show the average popularity
+	svg
+		.append("path")
+		.datum(data)
+		.attr("fill", "none")
+		.attr("stroke", "steelblue")
+		.attr("stroke-width", 4)
+		.attr("d", d3.line()
+			.x(function(d) { return x(d.date) })
+			.y(function(d) { return y(d.mean) })
+			)
+
+		// Create a rect on top of the svg area: this rectangle recovers mouse position
+	svg
+		.append('rect')
+		.style("fill", "none")
+		.style("pointer-events", "all")
+		.attr('width', width)
+		.attr('height', height)
+		.on('mouseover', mouseover)
+		.on('mousemove', mousemove)
+		.on('mouseout', mouseout);
+
+	// What happens when the mouse move -> show the annotations at the right positions.
+	function mouseover() {
+		focusText.style("opacity",1)
+		focusText2.style("opacity",1)
+		focusDate.style("opacity",1)
+	}
+
+	function mousemove() {
+		// recover coordinate we need
+		var x0 = x.invert(d3.mouse(this)[0]);
+		var i = bisect(data, x0, 1);
+		selectedData = data[i]
+		focusText
+			.text(selectedData.mean + "% Approuvent")
+			.attr("x", x(selectedData.date)+15)
+			.attr("y", y(selectedData.mean)-25)
+		focusText2
+			.text(selectedData.mean + "% Approuvent")
+			.attr("x", x(selectedData.date)+15)
+			.attr("y", y(selectedData.mean)-25)
+		focusDate
+			.text(d3.timeFormat("%b %Y")(selectedData.date))
+			.attr("x", x(selectedData.date)-40)
+			.attr("y", 5 * margin.top)
+		verticalLine
+			.attr("x1", x(selectedData.date))
+			.attr("x2", x(selectedData.date))
 		}
-	},
-	function(data){
 
-		var x = d3.scaleTime()
-			.domain([new Date("2017-05-01"), new Date("2022-05-01")])
-			.range([ 0, width ]);
-		svg.append("g")
-			.attr("transform", "translate(0," + height + ")")
-			.call(d3.axisBottom(x));
+	function mouseout() {
+		focus.style("opacity", 0)
+		focusText.style("opacity", 0)
+		focusDate.style("opacity", 0)
+		focusText2.style("opacity",0)
+	}
 
-		var y = d3.scaleLinear()
-			.domain([0, 100])
-			.range([ height, 0]);
-		svg.append("g")
-			.call(d3.axisLeft(y));
-
-		// This allows to find the closest X index of the mouse:
-		var bisect = d3.bisector(function(d) { return d.date; }).left;
-
-		// Create the text that travels along the curve of chart
-		var focusText = svg
-			.append('g')
-			.append('text')
-				.attr("class", "popularity-text")
-				.style("opacity", 0)
-				.attr("text-anchor", "left")
-				.attr("alignment-baseline", "middle")
-		    .style("font-size", "34px")
-		    .style("color", "black")
-
-		var focusDate = svg
-			.append('g')
-			.append('text')
-				.attr("class", "popularity-date")
-				.style("opacity", 0)
-				.attr("text-anchor", "left")
-				.attr("alignment-baseline", "middle")
-		    .style("font-size", "20px")
-		    .style("color", "black")
-
-		// Create the vertical line that follows the popularity
-		var verticalLine = svg
-		  .append("g")
-			.append("line")
-				.style("stroke", "black")
-				.style('stroke-width', 1)
-				.style('stroke-dasharray', ('5,1'))
-				.attr("y2", 7 * margin.top)
-		    .attr("y1", height)
-
-		// Show the average popularity
-		svg
-			.append("path")
-			.datum(data)
-			.attr("fill", "none")
-			.attr("stroke", "steelblue")
-			.attr("stroke-width", 4)
-			.attr("d", d3.line()
+	// Show HDI 95%
+	svg
+		.append("path")
+		.datum(data)
+			.attr("class", "hdi95")
+			.attr("fill", "#81A1C1")
+			.attr("opacity", .2)
+			.attr("stroke", "none")
+			.attr("d", d3.area()
 				.x(function(d) { return x(d.date) })
-				.y(function(d) { return y(d.mean) })
+				.y0(function(d) { return y(d.hdi_95_left) })
+				.y1(function(d) { return y(d.hdi_95_right) })
 				)
 
-			// Create a rect on top of the svg area: this rectangle recovers mouse position
-		svg
-			.append('rect')
-			.style("fill", "none")
-			.style("pointer-events", "all")
-			.attr('width', width)
-			.attr('height', height)
-			.on('mouseover', mouseover)
-			.on('mousemove', mousemove)
-			.on('mouseout', mouseout);
-
-		// What happens when the mouse move -> show the annotations at the right positions.
-		function mouseover() {
-			focusText.style("opacity",1)
-			focusDate.style("opacity",1)
-		}
-
-		function mousemove() {
-			// recover coordinate we need
-			var x0 = x.invert(d3.mouse(this)[0]);
-			var i = bisect(data, x0, 1);
-			selectedData = data[i]
-			focusText
-				.html(selectedData.mean + "% Approuvent")
-				.attr("x", x(selectedData.date)+15)
-				.attr("y", y(selectedData.mean)-25)
-			focusDate
-				.html(d3.timeFormat("%b %Y")(selectedData.date))
-				.attr("x", x(selectedData.date)-40)
-				.attr("y", 5 * margin.top)
-			verticalLine
-				.attr("x1", x(selectedData.date))
-				.attr("x2", x(selectedData.date))
-			}
-
-		function mouseout() {
-			focus.style("opacity", 0)
-			focusText.style("opacity", 0)
-			focusDate.style("opacity", 0)
-		}
-
-		// Show HDI 95%
-		svg
-			.append("path")
-			.datum(data)
-				.attr("class", "hdi95")
-				.attr("fill", "#81A1C1")
-				.attr("opacity", .2)
-				.attr("stroke", "none")
-				.attr("d", d3.area()
-					.x(function(d) { return x(d.date) })
-					.y0(function(d) { return y(d.hdi_95_left) })
-					.y1(function(d) { return y(d.hdi_95_right) })
-					)
-
-	}
+}
 )
 
 
