@@ -19,7 +19,7 @@
   margin-bottom: 4rem; }
 .comparison-img {
   display: block;
-  text-align: center;
+  width:100%;
   margin: 2.5rem auto 0; }
 .comparison-name {
  text-align: center; }
