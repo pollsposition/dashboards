@@ -12,3 +12,14 @@
   border-top: 1px solid #eee;
   padding: 4rem 0;
   margin-bottom: 0;}
+.comparison {
+  margin-top: 1rem; }
+.comparisons {
+  margin-top: 4rem;
+  margin-bottom: 4rem; }
+.comparison-img {
+  display: block;
+  text-align: center;
+  margin: 2.5rem auto 0; }
+.comparison-name {
+ text-align: center; }

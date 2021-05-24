@@ -23,27 +23,27 @@ var svg = d3.select("#my_dataviz")
 d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/main/exports/polls_popularity.csv", 
   function(d){ // Let us format the data variable
     return { 
-			field_date : d3.timeParse("%Y-%m-%d")(d.field_date),
-			sondage : d.sondage,
-		  method: d.method,
-		  p_approve: 100 * d.p_approve,
-		  samplesize: d.samplesize
-		}
+      field_date : d3.timeParse("%Y-%m-%d")(d.field_date),
+      sondage : d.sondage,
+      method: d.method,
+      p_approve: 100 * d.p_approve,
+      samplesize: d.samplesize
+  }
   },
-	function(data) {
+  function(data) {
 
-	var x = d3.scaleTime()
-		.domain([new Date("2017-05-01"), new Date("2022-05-01")]) 
-		.range([ 0, width ]);
-	svg.append("g")
-		.attr("transform", "translate(0," + height + ")")
-		.call(d3.axisBottom(x));
+var x = d3.scaleTime()
+	.domain([new Date("2017-05-01"), new Date("2022-05-01")]) 
+	.range([ 0, width ]);
+svg.append("g")
+	.attr("transform", "translate(0," + height + ")")
+	.call(d3.axisBottom(x));
 
-	var y = d3.scaleLinear()
-		.domain([0, 100])
-		.range([ height, 0]);
-	svg.append("g")
-		.call(d3.axisLeft(y));
+var y = d3.scaleLinear()
+	.domain([0, 100])
+	.range([ height, 0]);
+svg.append("g")
+	.call(d3.axisLeft(y));
 
   // Add a tooltip div. Here I define the general feature of the tooltip: stuff that do not depend on the data point.
   // Its opacity is set to 0: we don't see it by default.
@@ -96,7 +96,7 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
 
   var mousemove = function(d) {
     tooltip
-			.html("Institut: " + d.sondage + "<br>Méthode: " + d.method + "<br>Approuvent: " + d.p_approve + "%<br>Échantillon: " + d.samplesize)
+      .html("Institut: " + d.sondage + "<br>Méthode: " + d.method + "<br>Approuvent: " + d.p_approve + "%<br>Échantillon: " + d.samplesize)
       .style("left", (d3.mouse(this)[0]+90) + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
       .style("top", (d3.mouse(this)[1]) + "px")
   }
@@ -183,7 +183,7 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
 				.style("opacity", 0)
 				.attr("text-anchor", "left")
 				.attr("alignment-baseline", "middle")
-		    .style("font-size", "34px")
+		    .style("font-size", "20px")
 		    .style("color", "black")
 
 		// Create the vertical line that follows the popularity
@@ -193,8 +193,8 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
 				.style("stroke", "black")
 				.style('stroke-width', 1)
 				.style('stroke-dasharray', ('5,1'))
-				.attr("y1", 0)
-		    .attr("y2", height - margin.top - margin.bottom)
+				.attr("y2", 7 * margin.top)
+		    .attr("y1", height)
 
 		// Show the average popularity
 		svg
@@ -235,9 +235,9 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
 				.attr("x", x(selectedData.date)+15)
 				.attr("y", y(selectedData.mean)-25)
 			focusDate
-				.html(selectedData.date)
-				.attr("x", x(selectedData.date))
-				.attr("y", height)
+				.html(d3.timeFormat("%b %Y")(selectedData.date))
+				.attr("x", x(selectedData.date)-40)
+				.attr("y", 5 * margin.top)
 			verticalLine
 				.attr("x1", x(selectedData.date))
 				.attr("x2", x(selectedData.date))
