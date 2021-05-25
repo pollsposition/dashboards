@@ -16,22 +16,6 @@ var svg = d3.select("#my_dataviz")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-
-// -------------------------------------------------------------------
-//                        == POLL DATA ==
-// -------------------------------------------------------------------
-d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/main/exports/polls_popularity.csv", 
-  function(d){ // Let us format the data variable
-    return { 
-      field_date : d3.timeParse("%Y-%m-%d")(d.field_date),
-      sondage : d.sondage,
-      method: d.method,
-      p_approve: 100 * d.p_approve,
-      samplesize: d.samplesize
-  }
-  },
-  function(data) {
-
 var x = d3.scaleTime()
 	.domain([new Date("2017-05-01"), new Date("2022-05-01")]) 
 	.range([ 0, width ]);
@@ -43,7 +27,183 @@ var y = d3.scaleLinear()
 	.domain([0, 100])
 	.range([ height, 0]);
 svg.append("g")
-	.call(d3.axisLeft(y));
+	.call(d3.axisLeft(y).ticks(5));
+
+
+
+
+// -------------------------------------------------------------------
+//                    == MODEL + UNCERTAINTY ==
+// -------------------------------------------------------------------
+d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/main/exports/predictions_popularity.csv", 
+  function(d){ // Let us format the data variable
+    return { 
+			date : d3.timeParse("%Y-%m-%d")(d.date),
+			mean : Number.parseFloat(100 * d.mean).toFixed(1),
+			hdi_50_right : Number.parseFloat(100 * d.hdi_50_right).toFixed(1),
+			hdi_50_left : Number.parseFloat(100 * d.hdi_50_left).toFixed(1),
+			hdi_90_right : Number.parseFloat(100 * d.hdi_90_right).toFixed(1),
+			hdi_90_left : Number.parseFloat(100 * d.hdi_90_left).toFixed(1),
+    }
+  },
+  function(data){
+
+		// This allows to find the closest X index of the mouse:
+		var bisect = d3.bisector(function(d) { return d.date; }).left;
+
+		// Show the average popularity
+		svg
+			.append("path")
+			.datum(data)
+			.attr("fill", "none")
+			.attr("stroke", "steelblue")
+			.attr("stroke-width", 4)
+			.attr("d", d3.line()
+				.x(function(d) { return x(d.date) })
+				.y(function(d) { return y(d.mean) })
+				)
+	
+		// Create the text that travels along the curve of chart
+		lastItem = data[data.length-1]
+
+		var percentText = svg
+			.append('g')
+			.append('text')
+				.attr("id", "popularity")
+				.style("opacity", 1)
+				.attr("text-anchor", "left")
+				.attr("alignment-baseline", "middle")
+				.style("font-size", "34px")
+				.style("color", "black")
+				.html(lastItem.mean + " %")
+				.attr("x", x(lastItem.date)+15)
+				.attr("y", y(lastItem.mean)-50)
+
+		var approveText = svg
+			.append('g')
+			.append('text')
+				.attr("id", "popularity")
+				.style("opacity", 1)
+				.attr("text-anchor", "left")
+				.attr("alignment-baseline", "middle")
+				.style("font-size", "14px")
+				.style("color", "black")
+				.html("Approuvent")
+				.attr("x", x(lastItem.date)+15)
+				.attr("y", y(lastItem.mean)-25)
+
+		var focusDate = svg
+			.append('g')
+			.append('text')
+				.attr("id", "popularity")
+				.attr("class", "popularity-date")
+				.style("opacity", 1)
+				.attr("text-anchor", "left")
+				.attr("alignment-baseline", "middle")
+				.style("font-size", "20px")
+				.style("color", "black")
+				.text(d3.timeFormat("%b %Y")(lastItem.date))
+				.attr("x", x(lastItem.date)-40)
+				.attr("y", 5 * margin.top)
+
+		// Create the vertical line that follows the popularity
+		//arrow
+		var verticalLine = svg
+			.append("g")
+			.append("line")
+				.attr("id", "popularity")
+				.style("stroke", "black")
+				.style('stroke-width', 1)
+				.style('stroke-dasharray', ('5,1'))
+				.attr("y2", 7 * margin.top)
+				.attr("y1", height)
+				.attr("x1", x(lastItem.date))
+				.attr("x2", x(lastItem.date))
+
+
+			// Create a rect on top of the svg area: this rectangle recovers mouse position
+		svg
+			.append('rect')
+			.style("fill", "none")
+			.style("pointer-events", "all")
+			.attr('width', width+20)
+			.attr('height', height)
+			.on('mouseover', rect_mouseover)
+			.on('mousemove', rect_mousemove)
+			.on('mouseout', rect_mouseout);
+
+
+		// What happens when the mouse move -> show the annotations at the right positions.
+		function rect_mouseover() {
+			percentText.style("opacity", 1)
+			approveText.style("opacity", 1)
+			focusDate.style("opacity", 1)
+		}
+
+		function rect_mousemove() {
+			// recover coordinate we need
+			var x0 = x.invert(d3.mouse(this)[0]);
+			var i = bisect(data, x0, 1);
+			selectedData = data[i]
+			percentText
+				.html(selectedData.mean + "%")
+				.attr("x", x(selectedData.date)+15)
+				.attr("y", y(selectedData.mean)-50)
+			approveText
+				.html("approuvent")
+				.attr("x", x(selectedData.date)+15)
+				.attr("y", y(selectedData.mean)-25)
+				.raise()
+			focusDate
+				.text(d3.timeFormat("%b %Y")(selectedData.date))
+				.attr("x", x(selectedData.date)-40)
+				.attr("y", 5 * margin.top)
+				.order()
+			verticalLine
+				.attr("x1", x(selectedData.date))
+				.attr("x2", x(selectedData.date))
+				.order()
+			}
+
+		function rect_mouseout() {
+			focus.style("opacity", 0)
+			percentText.style("opacity", 0)
+			approveText.style("opacity", 0)
+			focusDate.style("opacity", 0)
+		}
+
+		// Show HDI 90
+		svg
+			.append("path")
+			.datum(data)
+				.attr("class", "hdi90")
+				.attr("fill", "#81A1C1")
+				.attr("opacity", .1)
+				.attr("stroke", "none")
+				.attr("d", d3.area()
+					.x(function(d) { return x(d.date) })
+					.y0(function(d) { return y(d.hdi_90_left) })
+					.y1(function(d) { return y(d.hdi_90_right) })
+					)
+
+}
+)
+
+// -------------------------------------------------------------------
+//                        == POLL DATA ==
+// -------------------------------------------------------------------
+d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/main/exports/polls_popularity.csv", 
+  function(d){ // Let us format the data variable
+    return { 
+      field_date : d3.timeParse("%Y-%m-%d")(d.field_date),
+      sondage : d.sondage,
+      method: d.method,
+      p_approve: Number.parseFloat(100 * d.p_approve).toFixed(1),
+      samplesize: d.samplesize
+  	}
+  },
+  function(data) {
+
 
   // Add a tooltip div. Here I define the general feature of the tooltip: stuff that do not depend on the data point.
   // Its opacity is set to 0: we don't see it by default.
@@ -91,14 +251,13 @@ svg.append("g")
   var mouseover = function(d) {
     tooltip
       .style("opacity", 1)
-		//jhighlight(d);
+		highlight(d);
+		svg.select("#my_dataviz").selectAll(".popularity")
   }
 
   var mousemove = function(d) {
     tooltip
-      .html("Institut: " + d.sondage + "<br>Méthode: " + d.method + "<br>Approuvent: " + d.p_approve + "%<br>Échantillon: " + d.samplesize)
-      .style("left", (d3.mouse(this)[0]+90) + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
-      .style("top", (d3.mouse(this)[1]) + "px")
+      .html(d3.timeFormat("%d %B %Y")(d.field_date) + "<br>" + d.sondage + " (" + d.method + ") - " + d.samplesize + " interrogés<br>" + d.p_approve + "% d'opinions positives")
   }
 	
   // A function that change this tooltip when the leaves a point: just need to set opacity to 0 again
@@ -131,181 +290,7 @@ svg.append("g")
     .on("mousemove", mousemove)
     .on("mouseleave", mouseleave)
     .on("click", click)
+
 })
-
-// -------------------------------------------------------------------
-//                    == MODEL + UNCERTAINTY ==
-// -------------------------------------------------------------------
-d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/main/exports/predictions_popularity.csv", 
-  function(d){ // Let us format the data variable
-    return { 
-	date : d3.timeParse("%Y-%m-%d")(d.date),
-	mean : Number.parseFloat(100 * d.mean).toFixed(1),
-	hdi_50_right : Number.parseFloat(100 * d.hdi_50_right).toFixed(1),
-	hdi_50_left : Number.parseFloat(100 * d.hdi_50_left).toFixed(1),
-	hdi_90_right : Number.parseFloat(100 * d.hdi_90_right).toFixed(1),
-	hdi_90_left : Number.parseFloat(100 * d.hdi_90_left).toFixed(1),
-    }
-  },
-  function(data){
-
-	var x = d3.scaleTime()
-		.domain([new Date("2017-05-01"), new Date("2022-05-01")])
-		.range([ 0, width ]);
-	svg.append("g")
-		.attr("transform", "translate(0," + height + ")")
-		.call(d3.axisBottom(x));
-
-	var y = d3.scaleLinear()
-		.domain([0, 100])
-		.range([ height, 0]);
-	svg.append("g")
-		.call(d3.axisLeft(y));
-
-	// This allows to find the closest X index of the mouse:
-	var bisect = d3.bisector(function(d) { return d.date; }).left;
-
-	// Show the average popularity
-	svg
-		.append("path")
-		.datum(data)
-		.attr("fill", "none")
-		.attr("stroke", "steelblue")
-		.attr("stroke-width", 4)
-		.attr("d", d3.line()
-			.x(function(d) { return x(d.date) })
-			.y(function(d) { return y(d.mean) })
-			)
-
-	// Create the text that travels along the curve of chart
-	var percentText = svg
-		.append('g')
-		.append('text')
-			.attr("class", "popularity-text")
-			.style("opacity", 0)
-			.attr("text-anchor", "left")
-			.attr("alignment-baseline", "middle")
-	    .style("font-size", "34px")
-	    .style("color", "black")
-
-	var approveText = svg
-		.append('g')
-		.append('text')
-			.attr("class", "popularity-text")
-			.style("opacity", 0)
-			.attr("text-anchor", "left")
-			.attr("alignment-baseline", "middle")
-	    .style("font-size", "14px")
-	    .style("color", "black")
-
-	var focusDate = svg
-		.append('g')
-		.append('text')
-			.attr("class", "popularity-date")
-			.style("opacity", 0)
-			.attr("text-anchor", "left")
-			.attr("alignment-baseline", "middle")
-	    .style("font-size", "20px")
-	    .style("color", "black")
-
-	// Create the vertical line that follows the popularity
-	//arrow
-	var verticalLine = svg
-	  .append("g")
-		.append("line")
-			.style("stroke", "black")
-			.style('stroke-width', 1)
-			.style('stroke-dasharray', ('5,1'))
-			.attr("y2", 7 * margin.top)
-	    .attr("y1", height)
-
-
-
-		//percentText
-			//.html(selectedData.mean + "%")
-			//.attr("x", x(selectedData.date)+15)
-			//.attr("y", y(selectedData.mean)-50)
-		//approveText
-			//.html("approuvent")
-			//.attr("x", x(selectedData.date)+15)
-			//.attr("y", y(selectedData.mean)-25)
-			//.raise()
-		//focusDate
-			//.text(d3.timeFormat("%b %Y")(selectedData.date))
-			//.attr("x", x(selectedData.date)-40)
-			//.attr("y", 5 * margin.top)
-			//.order()
-		//verticalLine
-			//.attr("x1", x(selectedData.date))
-			//.attr("x2", x(selectedData.date))
-			//.order()
-
-		// Create a rect on top of the svg area: this rectangle recovers mouse position
-	svg
-		.append('rect')
-		.style("fill", "none")
-		.style("pointer-events", "all")
-		.attr('width', width)
-		.attr('height', height)
-		.on('mouseover', mouseover)
-		.on('mousemove', mousemove)
-		.on('mouseout', mouseout);
-
-
-	// What happens when the mouse move -> show the annotations at the right positions.
-	function mouseover() {
-		percentText.style("opacity", 1)
-		approveText.style("opacity", 1)
-		focusDate.style("opacity", 1)
-	}
-
-	function mousemove() {
-		// recover coordinate we need
-		var x0 = x.invert(d3.mouse(this)[0]);
-		var i = bisect(data, x0, 1);
-		selectedData = data[i]
-		percentText
-			.html(selectedData.mean + "%")
-			.attr("x", x(selectedData.date)+15)
-			.attr("y", y(selectedData.mean)-50)
-		approveText
-			.html("approuvent")
-			.attr("x", x(selectedData.date)+15)
-			.attr("y", y(selectedData.mean)-25)
-			.raise()
-		focusDate
-			.text(d3.timeFormat("%b %Y")(selectedData.date))
-			.attr("x", x(selectedData.date)-40)
-			.attr("y", 5 * margin.top)
-			.order()
-		verticalLine
-			.attr("x1", x(selectedData.date))
-			.attr("x2", x(selectedData.date))
-			.order()
-		}
-
-	function mouseout() {
-		focus.style("opacity", 0)
-		percentText.style("opacity", 0)
-		approveText.style("opacity", 0)
-		focusDate.style("opacity", 0)
-	}
-
-	// Show HDI 90
-	svg
-		.append("path")
-		.datum(data)
-			.attr("class", "hdi90")
-			.attr("fill", "#81A1C1")
-			.attr("opacity", .2)
-			.attr("stroke", "none")
-			.attr("d", d3.area()
-				.x(function(d) { return x(d.date) })
-				.y0(function(d) { return y(d.hdi_90_left) })
-				.y1(function(d) { return y(d.hdi_90_right) })
-				)
-
-}
-)
 
 
