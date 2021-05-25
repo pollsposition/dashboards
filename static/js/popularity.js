@@ -165,6 +165,18 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
 	// This allows to find the closest X index of the mouse:
 	var bisect = d3.bisector(function(d) { return d.date; }).left;
 
+	// Show the average popularity
+	svg
+		.append("path")
+		.datum(data)
+		.attr("fill", "none")
+		.attr("stroke", "steelblue")
+		.attr("stroke-width", 4)
+		.attr("d", d3.line()
+			.x(function(d) { return x(d.date) })
+			.y(function(d) { return y(d.mean) })
+			)
+
 	// Create the text that travels along the curve of chart
 	var percentText = svg
 		.append('g')
@@ -175,9 +187,6 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
 			.attr("alignment-baseline", "middle")
 	    .style("font-size", "34px")
 	    .style("color", "black")
-            .attr("stroke", "black")
-	    .attr("fill", "black")
-            .attr("stroke-width", "2px");
 
 	var approveText = svg
 		.append('g')
@@ -210,17 +219,26 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
 			.attr("y2", 7 * margin.top)
 	    .attr("y1", height)
 
-	// Show the average popularity
-	svg
-		.append("path")
-		.datum(data)
-		.attr("fill", "none")
-		.attr("stroke", "steelblue")
-		.attr("stroke-width", 4)
-		.attr("d", d3.line()
-			.x(function(d) { return x(d.date) })
-			.y(function(d) { return y(d.mean) })
-			)
+
+
+		//percentText
+			//.html(selectedData.mean + "%")
+			//.attr("x", x(selectedData.date)+15)
+			//.attr("y", y(selectedData.mean)-50)
+		//approveText
+			//.html("approuvent")
+			//.attr("x", x(selectedData.date)+15)
+			//.attr("y", y(selectedData.mean)-25)
+			//.raise()
+		//focusDate
+			//.text(d3.timeFormat("%b %Y")(selectedData.date))
+			//.attr("x", x(selectedData.date)-40)
+			//.attr("y", 5 * margin.top)
+			//.order()
+		//verticalLine
+			//.attr("x1", x(selectedData.date))
+			//.attr("x2", x(selectedData.date))
+			//.order()
 
 		// Create a rect on top of the svg area: this rectangle recovers mouse position
 	svg
@@ -236,9 +254,9 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
 
 	// What happens when the mouse move -> show the annotations at the right positions.
 	function mouseover() {
-		percentText.style("opacity",1)
-		approveText.style("opacity",1)
-		focusDate.style("opacity",1)
+		percentText.style("opacity", 1)
+		approveText.style("opacity", 1)
+		focusDate.style("opacity", 1)
 	}
 
 	function mousemove() {
