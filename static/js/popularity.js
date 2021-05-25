@@ -143,8 +143,8 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
 	mean : Number.parseFloat(100 * d.mean).toFixed(1),
 	hdi_50_right : Number.parseFloat(100 * d.hdi_50_right).toFixed(1),
 	hdi_50_left : Number.parseFloat(100 * d.hdi_50_left).toFixed(1),
-	hdi_95_right : Number.parseFloat(100 * d.hdi_95_right).toFixed(1),
-	hdi_95_left : Number.parseFloat(100 * d.hdi_95_left).toFixed(1),
+	hdi_90_right : Number.parseFloat(100 * d.hdi_90_right).toFixed(1),
+	hdi_90_left : Number.parseFloat(100 * d.hdi_90_left).toFixed(1),
     }
   },
   function(data){
@@ -272,18 +272,18 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
 		focusText2.style("opacity",0)
 	}
 
-	// Show HDI 95%
+	// Show HDI 90
 	svg
 		.append("path")
 		.datum(data)
-			.attr("class", "hdi95")
+			.attr("class", "hdi90")
 			.attr("fill", "#81A1C1")
 			.attr("opacity", .2)
 			.attr("stroke", "none")
 			.attr("d", d3.area()
 				.x(function(d) { return x(d.date) })
-				.y0(function(d) { return y(d.hdi_95_left) })
-				.y1(function(d) { return y(d.hdi_95_right) })
+				.y0(function(d) { return y(d.hdi_90_left) })
+				.y1(function(d) { return y(d.hdi_90_right) })
 				)
 
 }
