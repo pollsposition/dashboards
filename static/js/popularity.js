@@ -55,6 +55,7 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
 		svg
 			.append("path")
 			.datum(data)
+			.attr("id", "popularity")
 			.attr("fill", "none")
 			.attr("stroke", "steelblue")
 			.attr("stroke-width", 4)
@@ -148,21 +149,18 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
 			percentText
 				.html(selectedData.mean + "%")
 				.attr("x", x(selectedData.date)+15)
-				.attr("y", y(selectedData.mean)-50)
+				.attr("y", y(selectedData.mean)-90)
 			approveText
 				.html("approuvent")
 				.attr("x", x(selectedData.date)+15)
-				.attr("y", y(selectedData.mean)-25)
-				.raise()
+				.attr("y", y(selectedData.mean)-70)
 			focusDate
 				.text(d3.timeFormat("%b %Y")(selectedData.date))
 				.attr("x", x(selectedData.date)-40)
 				.attr("y", 5 * margin.top)
-				.order()
 			verticalLine
 				.attr("x1", x(selectedData.date))
 				.attr("x2", x(selectedData.date))
-				.order()
 			}
 
 		function rect_mouseout() {
@@ -170,6 +168,8 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
 			percentText.style("opacity", 0)
 			approveText.style("opacity", 0)
 			focusDate.style("opacity", 0)
+			percentText.raise()
+			approveText.raise()
 		}
 
 		// Show HDI 90
@@ -251,8 +251,8 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
   var mouseover = function(d) {
     tooltip
       .style("opacity", 1)
-		highlight(d);
-		svg.select("#my_dataviz").selectAll(".popularity")
+		highlight(d)
+		d3.select(this).lower()
   }
 
   var mousemove = function(d) {
@@ -266,13 +266,9 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
       .transition()
       .duration(200)
       .style("opacity", 0)
-		remove_highlight(d);
+		remove_highlight(d)
   }
 	
-	var click = function(d) {
-		highlight(d)
-	}
-
   // Add dots
   svg.append('g')
     .selectAll("dot")
@@ -289,8 +285,7 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
     .on("mouseover", mouseover)
     .on("mousemove", mousemove)
     .on("mouseleave", mouseleave)
-    .on("click", click)
-
+	
 })
 
 
