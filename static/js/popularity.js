@@ -166,20 +166,7 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
 	var bisect = d3.bisector(function(d) { return d.date; }).left;
 
 	// Create the text that travels along the curve of chart
-	var focusText = svg
-		.append('g')
-		.append('text')
-			.attr("class", "popularity-text")
-			.style("opacity", 0)
-			.attr("text-anchor", "left")
-			.attr("alignment-baseline", "middle")
-	    .style("font-size", "34px")
-	    .style("color", "white")
-            .attr("stroke", "white")
-	    .attr("fill", "black")
-            .attr("stroke-width", "3px");
-
-	var focusText2 = svg
+	var percentText = svg
 		.append('g')
 		.append('text')
 			.attr("class", "popularity-text")
@@ -191,6 +178,16 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
             .attr("stroke", "black")
 	    .attr("fill", "black")
             .attr("stroke-width", "2px");
+
+	var approveText = svg
+		.append('g')
+		.append('text')
+			.attr("class", "popularity-text")
+			.style("opacity", 0)
+			.attr("text-anchor", "left")
+			.attr("alignment-baseline", "middle")
+	    .style("font-size", "14px")
+	    .style("color", "black")
 
 	var focusDate = svg
 		.append('g')
@@ -236,10 +233,11 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
 		.on('mousemove', mousemove)
 		.on('mouseout', mouseout);
 
+
 	// What happens when the mouse move -> show the annotations at the right positions.
 	function mouseover() {
-		focusText.style("opacity",1)
-		focusText2.style("opacity",1)
+		percentText.style("opacity",1)
+		approveText.style("opacity",1)
 		focusDate.style("opacity",1)
 	}
 
@@ -248,28 +246,31 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
 		var x0 = x.invert(d3.mouse(this)[0]);
 		var i = bisect(data, x0, 1);
 		selectedData = data[i]
-		focusText
-			.text(selectedData.mean + "% Approuvent")
+		percentText
+			.html(selectedData.mean + "%")
+			.attr("x", x(selectedData.date)+15)
+			.attr("y", y(selectedData.mean)-50)
+		approveText
+			.html("approuvent")
 			.attr("x", x(selectedData.date)+15)
 			.attr("y", y(selectedData.mean)-25)
-		focusText2
-			.text(selectedData.mean + "% Approuvent")
-			.attr("x", x(selectedData.date)+15)
-			.attr("y", y(selectedData.mean)-25)
+			.raise()
 		focusDate
 			.text(d3.timeFormat("%b %Y")(selectedData.date))
 			.attr("x", x(selectedData.date)-40)
 			.attr("y", 5 * margin.top)
+			.order()
 		verticalLine
 			.attr("x1", x(selectedData.date))
 			.attr("x2", x(selectedData.date))
+			.order()
 		}
 
 	function mouseout() {
 		focus.style("opacity", 0)
-		focusText.style("opacity", 0)
+		percentText.style("opacity", 0)
+		approveText.style("opacity", 0)
 		focusDate.style("opacity", 0)
-		focusText2.style("opacity",0)
 	}
 
 	// Show HDI 90
