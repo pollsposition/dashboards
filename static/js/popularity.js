@@ -35,7 +35,7 @@ svg.append("g")
 // -------------------------------------------------------------------
 //                    == MODEL + UNCERTAINTY ==
 // -------------------------------------------------------------------
-d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/main/exports/predictions_popularity.csv", 
+d3.csv("https://raw.githubusercontent.com/pollsposition/dashboards/main/exports/predictions_popularity.csv", 
   function(d){ // Let us format the data variable
     return { 
 			date : d3.timeParse("%Y-%m-%d")(d.date),
@@ -205,7 +205,7 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
 // -------------------------------------------------------------------
 //                        == POLL DATA ==
 // -------------------------------------------------------------------
-d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/main/exports/polls_popularity.csv", 
+d3.csv("https://raw.githubusercontent.com/pollsposition/dashboards/main/exports/polls_popularity.csv",
   function(d){ // Let us format the data variable
     return { 
       field_date : d3.timeParse("%Y-%m-%d")(d.field_date),
