@@ -24,7 +24,7 @@ tools -- just like The Avengers, they really are true heroes.
 
 ## Who is it?
 
-This project is maintained and spearheaded by [Alexandre Andorra](https://twitter.com/alex_andorra) and Rémi Louf[https://twitter.com/remilouf].
+This project is maintained and spearheaded by [Alexandre Andorra](https://twitter.com/alex_andorra) and [Rémi Louf](https://twitter.com/remilouf).
 
 By day, I'm a Bayesian modeler at the <a href="https://www.pymc-labs.io/" target="_blank">PyMC Labs consultancy</a> and
 host the most popular podcast dedicated to Bayesian inference out there -- aka
