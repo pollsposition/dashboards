@@ -93,6 +93,11 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
 				.attr("x", x(lastItem.date)+15)
 				.attr("y", y(lastItem.mean)-25)
 
+		var display_first_month = new Date( // in front of May we display popularity for Month of April
+				lastItem.date.getFullYear(),
+				lastItem.date.getMonth() - 1, 
+				lastItem.date.getDate()
+		)
 		var focusDate = svg
 			.append('g')
 			.append('text')
@@ -103,7 +108,7 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
 				.attr("alignment-baseline", "middle")
 				.style("font-size", "20px")
 				.style("color", "black")
-				.text(d3.timeFormat("%b %Y")(lastItem.date))
+				.text(d3.timeFormat("%b %Y")(display_first_month))
 				.attr("x", x(lastItem.date)-40)
 				.attr("y", 5 * margin.top)
 
@@ -145,7 +150,15 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
 			// recover coordinate we need
 			var x0 = x.invert(d3.mouse(this)[0]);
 			var i = bisect(data, x0, 1);
+
 			selectedData = data[i]
+			month = selectedData.date
+			var display_month = new Date( // in front of May we display popularity for Month of April
+					month.getFullYear(),
+					month.getMonth() - 1, 
+					month.getDate()
+			)
+
 			percentText
 				.html(selectedData.mean + "%")
 				.attr("x", x(selectedData.date)+15)
@@ -155,7 +168,7 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
 				.attr("x", x(selectedData.date)+15)
 				.attr("y", y(selectedData.mean)-70)
 			focusDate
-				.text(d3.timeFormat("%b %Y")(selectedData.date))
+				.text(d3.timeFormat("%b %Y")(display_month))
 				.attr("x", x(selectedData.date)-40)
 				.attr("y", 5 * margin.top)
 			verticalLine
@@ -236,7 +249,7 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
   var remove_highlight = function(){
     d3.selectAll(".dot")
       .transition()
-      .duration(200)
+      .duration(100)
       .attr("r", 4)
       .style("fill", "#d8dee9")
       .style("opacity", 1)
@@ -283,13 +296,14 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
       .attr("cx", function (d) { return x(d.field_date); } )
       .attr("cy", function (d) { return y(d.p_approve); } )
       .attr("r", 4)
-      .style("fill", "#81A1C1")
-      .style("opacity", .5)
+      .style("fill", "#d8dee9")
+      .style("opacity", 1)
       .style("stroke", "white")
     .on("mouseover", mouseover)
     .on("mousemove", mousemove)
     .on("mouseleave", mouseleave)
-	
+
 })
 
+d3.selectAll(".popularity").raise()
 
