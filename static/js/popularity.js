@@ -199,6 +199,7 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
       sondage : d.sondage,
       method: d.method,
       p_approve: Number.parseFloat(100 * d.p_approve).toFixed(1),
+      p_disapprove: Number.parseFloat(100 * d.p_disapprove).toFixed(1),
       samplesize: d.samplesize
   	}
   },
@@ -211,11 +212,7 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
     .append("div")
     .style("opacity", 0)
     .attr("class", "tooltip")
-    .style("background-color", "white")
-    .style("border", "solid")
-    .style("border-width", "1px")
-    .style("border-radius", "5px")
-    .style("padding", "10px")
+    .style("padding-bottom", 30)
 
 
   var highlight = function(d) {
@@ -257,7 +254,14 @@ d3.csv("https://raw.githubusercontent.com/AlexAndorra/pollsposition_dashboards/m
 
   var mousemove = function(d) {
     tooltip
-      .html(d3.timeFormat("%d %B %Y")(d.field_date) + "<br>" + d.sondage + " (" + d.method + ") - " + d.samplesize + " interrogés<br>" + d.p_approve + "% d'opinions positives")
+      .html(
+				d.sondage + " - "
+				+ d.samplesize + " interrogés"
+				+ " (" + d.method + ")<br>"
+				+ "<span style='color:#A3BE8C; font-weight:bold'>" + d.p_approve + "%</span> d'opinions positives<br>"
+				+ "<span style='color:#BF616A; font-weight: bold'>" + d.p_disapprove + "%</span> d'opinions négatives<br>"
+				+ "<span style='font-style: italic'>(" + d3.timeFormat("%d %B %Y")(d.field_date) + ")</span>"
+			)
   }
 	
   // A function that change this tooltip when the leaves a point: just need to set opacity to 0 again
