@@ -49,7 +49,7 @@ d3.csv("https://raw.githubusercontent.com/pollsposition/dashboards/main/exports/
   function(data){
 
 		// This allows to find the closest X index of the mouse:
-		var bisect = d3.bisector(function(d) { return d.date; }).left;
+		var bisect = d3.bisector(function(d) { return d.date; }).right;
 
 		// Show the average popularity
 		svg
@@ -132,7 +132,8 @@ d3.csv("https://raw.githubusercontent.com/pollsposition/dashboards/main/exports/
 			.append('rect')
 			.style("fill", "none")
 			.style("pointer-events", "all")
-			.attr('width', width+20)
+			.attr('x', - margin.left)
+			.attr('width', width + margin.right)
 			.attr('height', height)
 			.on('mouseover', rect_mouseover)
 			.on('mousemove', rect_mousemove)
@@ -149,7 +150,7 @@ d3.csv("https://raw.githubusercontent.com/pollsposition/dashboards/main/exports/
 		function rect_mousemove() {
 			// recover coordinate we need
 			var x0 = x.invert(d3.mouse(this)[0]);
-			var i = bisect(data, x0, 1);
+			var i = bisect(data, x0);
 
 			selectedData = data[i]
 			month = selectedData.date
