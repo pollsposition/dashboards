@@ -83,11 +83,9 @@ field_date,sondage,method,samplesize,p_approve,p_disapprove
 2018-03-28,YouGov,internet,1004,0.32,0.56
 2018-03-30,Kantar,face to face,1000,0.4,0.56
 2018-04-04,Elabe,internet,1008,0.39,0.55
-2018-04-13,Elabe,internet,1004,0.2,0.44
 2018-04-14,Ifop,internet,1201,0.42,0.58
 2018-04-17,Ifop,phone&internet,1949,0.44,0.55
 2018-04-17,Viavoice,internet,1000,0.41,0.46
-2018-04-18,Elabe,internet,1002,0.2,0.46
 2018-04-19,BVA,internet,1011,0.43,0.54
 2018-04-19,Odoxa,internet,1017,0.47,0.53
 2018-04-21,Ipsos,internet,1013,0.4,0.52
@@ -377,6 +375,7 @@ field_date,sondage,method,samplesize,p_approve,p_disapprove
 2021-03-06,Ipsos,internet,1000,0.41,0.53
 2021-03-15,Ifop,phone&internet,1911,0.37,0.6
 2021-03-18,BVA,internet,1001,0.39,0.61
+2021-03-20,Viavoice,internet,1000,0.33,0.58
 2021-03-24,Harris,internet,1023,0.46,0.54
 2021-03-25,Odoxa,internet,1005,0.39,0.61
 2021-03-26,Ifop,internet,1011,0.39,0.61
@@ -384,4 +383,13 @@ field_date,sondage,method,samplesize,p_approve,p_disapprove
 2021-03-30,YouGov,internet,1068,0.3,0.61
 2021-04-07,Elabe,internet,1003,0.33,0.63
 2021-04-10,Ipsos,internet,1002,0.37,0.58
+2021-04-22,BVA,internet,1002,0.39,0.6
+2021-04-22,Odoxa,internet,1005,0.38,0.61
 2021-04-26,Kantar,internet,1000,0.35,0.58
+2021-04-28,Harris,internet,1041,0.46,0.54
+2021-04-29,Ifop,internet,1002,0.41,0.59
+2021-05-04,YouGov,internet,1001,0.31,0.62
+2021-05-05,Elabe,internet,1000,0.33,0.62
+2021-05-16,Ifop,phone&internet,1928,0.4,0.58
+2021-05-20,BVA,internet,1004,0.42,0.58
+2021-05-21,Odoxa,internet,1005,0.41,0.58
