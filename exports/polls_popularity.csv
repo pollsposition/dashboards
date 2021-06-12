@@ -393,3 +393,7 @@ field_date,sondage,method,samplesize,p_approve,p_disapprove
 2021-05-16,Ifop,phone&internet,1928,0.4,0.58
 2021-05-20,BVA,internet,1004,0.42,0.58
 2021-05-21,Odoxa,internet,1005,0.41,0.58
+2021-05-28,Ifop,internet,1015,0.41,0.59
+2021-05-29,Ipsos,internet,1000,0.4,0.57
+2021-06-01,Kantar,internet,1000,0.35,0.57
+2021-06-02,Elabe,internet,1002,0.36,0.58
