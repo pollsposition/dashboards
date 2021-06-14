@@ -5,6 +5,9 @@ Dashboards for electoral forecasting models in [PyMC3](https://docs.pymc.io/).
 
 This repository is a collection of dashboards displaying the results of electoral forecasting models implemented in PyMC3. For now, the models are focused on forecasting French elections.
 
+- Markov model to estimate 🇫🇷 presidents' latent popularity across time and terms:
+  - [Interactive dashboard](https://www.pollsposition.com/popularity)
+
 - Gaussian Process regression to forecast how French presidents' approval evolves with time:
   - [Interactive dashboard](https://share.streamlit.io/alexandorra/pollsposition_website/main/gp-popularity-app.py)
   - [Tutorial notebook](https://alexandorra.github.io/pollsposition_blog/popularity/macron/gaussian%20processes/polls/2021/01/18/gp-popularity.html)
