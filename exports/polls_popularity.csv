@@ -398,3 +398,5 @@ field_date,sondage,method,samplesize,p_approve,p_disapprove
 2021-06-01,Kantar,internet,1000,0.35,0.57
 2021-06-02,Elabe,internet,1002,0.36,0.58
 2021-07-12,Ipsos,internet,1000,0.39,0.55
+2021-08-21,Ifop,phone&internet,992,0.41,0.59
+2021-08-27,BVA,internet,1003,0.4,0.6
