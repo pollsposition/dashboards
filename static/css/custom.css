@@ -5,11 +5,9 @@
   text-align: center; }
 .comparison-header {
   text-transform: uppercase;
-  font-size: 1.4rem;
   letter-spacing: .2rem;
   font-weight: 600; }
 .comparison-section {
-  border-top: 1px solid #eee;
   padding: 4rem 0;
   margin-bottom: 0;}
 .comparison {
