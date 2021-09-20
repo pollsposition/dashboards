@@ -410,9 +410,12 @@ field_date,sondage,method,samplesize,p_approve,p_disapprove
 2021-07-16,Odoxa,internet,1005,0.39,0.61
 2021-07-29,Harris,internet,1044,0.47,0.53
 2021-08-04,Elabe,internet,1003,0.34,0.61
+2021-08-12,YouGov,internet,1107,0.28,0.72
 2021-08-21,Ifop,phone&internet,992,0.41,0.59
 2021-08-26,Harris,internet,1054,0.48,0.52
 2021-08-27,BVA,internet,1003,0.4,0.6
 2021-08-31,Kantar,internet,1000,0.38,0.55
+2021-09-01,Elabe,internet,1000,0.37,0.57
 2021-09-01,Ifop,internet,1003,0.38,0.62
 2021-09-08,Ipsos,internet,1000,0.4,0.53
+2021-09-16,Ifop,internet,1939,0.38,0.59
