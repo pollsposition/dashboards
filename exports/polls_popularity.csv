@@ -419,3 +419,4 @@ field_date,sondage,method,samplesize,p_approve,p_disapprove
 2021-09-01,Ifop,internet,1003,0.38,0.62
 2021-09-08,Ipsos,internet,1000,0.4,0.53
 2021-09-16,Ifop,internet,1939,0.38,0.59
+2021-09-30,Kantar,internet,1000,0.34,0.57
