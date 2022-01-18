@@ -430,3 +430,14 @@ field_date,sondage,method,samplesize,p_approve,p_disapprove
 2021-10-21,Odoxa,internet,1005,0.4,0.6
 2021-11-01,Kantar,internet,1000,0.36,0.57
 2021-11-03,Elabe,internet,1001,0.34,0.6
+2021-11-25,BVA,internet,1001,0.42,0.58
+2021-11-18,Odoxa,internet,1005,0.44,0.56
+2021-11-13,Ifop,phone&internet,1891,0.4,0.57
+2021-11-25,Harris,internet,1078,0.51,0.49
+2021-12-06,Kantar,internet,1000,0.37,0.55
+2021-12-07,Elabe,internet,1480,0.36,0.58
+2021-12-16,BVA,internet,1000,0.44,0.56
+2021-12-11,Ipsos,internet,1000,0.41,0.52
+2021-12-08,Odoxa,internet,1005,0.44,0.56
+2021-12-13,Ifop,phone&internet,1947,0.41,0.55
+2021-12-22,Harris,internet,1211,0.51,0.49
