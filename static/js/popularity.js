@@ -133,7 +133,7 @@ d3.csv("https://raw.githubusercontent.com/pollsposition/dashboards/main/exports/
 			.style("fill", "none")
 			.style("pointer-events", "all")
 			.attr('x', - margin.left)
-			.attr('width', width + margin.right)
+			.attr('width', width + margin.left + margin.right)
 			.attr('height', height)
 			.on('mouseover', rect_mouseover)
 			.on('mousemove', rect_mousemove)
